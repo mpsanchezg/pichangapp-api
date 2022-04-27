@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  has_many :my_pichangas, dependent: :destroy, foreign_key: :home_team
+  has_many :pichangas, foreign_key: :visitor_team
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
@@ -17,6 +21,8 @@ end
 #  remember_created_at    :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  name                   :string
+#  category               :string
 #
 # Indexes
 #
