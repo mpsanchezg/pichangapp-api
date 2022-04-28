@@ -1,4 +1,4 @@
-class Api::Exposed::V1::UsersController < Api::Exposed::V1::BaseController
+class Api::Exposed::V1::UsersController < Api::BaseController
   def index
     respond_with paginate(filtered_collection(User.all))
   end
