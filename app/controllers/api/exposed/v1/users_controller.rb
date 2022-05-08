@@ -8,7 +8,17 @@ class Api::Exposed::V1::UsersController < Api::BaseController
   end
 
   def create
-    respond_with User.create!(user_params)
+    _user = User.create!(user_params)
+    respond_with _user.authentication_token
+  end
+
+  def login
+    _user = User.find_by_email!(params[:email])
+    if _user.valid_password? params[:password]
+      respond_with _user.authentication_token
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def update
@@ -25,10 +35,7 @@ class Api::Exposed::V1::UsersController < Api::BaseController
   def user_params
     params.require(:user).permit(
       :email,
-      :encrypted_password,
-      :reset_password_token,
-      :reset_password_sent_at,
-      :remember_created_at,
+      :password,
       :name,
       :category
     )
