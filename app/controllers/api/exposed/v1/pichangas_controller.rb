@@ -1,4 +1,6 @@
 class Api::Exposed::V1::PichangasController < Api::BaseController
+  acts_as_token_authentication_handler_for User, only: [:create, :update, :destroy]
+
   def index
     respond_with paginate(filtered_collection(Pichanga.all))
   end
