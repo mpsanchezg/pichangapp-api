@@ -1,6 +1,6 @@
 class Api::Exposed::V1::UsersController < Api::BaseController
   def index
-    respond_with paginate(filtered_collection(User.all))
+    respond_with filtered_collection(User.all)
   end
 
   def show
@@ -9,13 +9,13 @@ class Api::Exposed::V1::UsersController < Api::BaseController
 
   def create
     _user = User.create!(user_params)
-    respond_with _user.authentication_token
+    respond_with 201
   end
 
   def login
     _user = User.find_by_email!(params[:email])
     if _user.valid_password? params[:password]
-      respond_with _user.authentication_token
+      respond_with token: _user.authentication_token, user_id: _user.id
     else
       raise ActiveRecord::RecordNotFound
     end
@@ -33,7 +33,7 @@ class Api::Exposed::V1::UsersController < Api::BaseController
   end
 
   def user_params
-    params.require(:user).permit(
+    params.permit(
       :email,
       :password,
       :name,
