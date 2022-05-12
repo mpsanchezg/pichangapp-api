@@ -1,6 +1,6 @@
 class Api::Exposed::V1::LocationsController < Api::BaseController
   def index
-    respond_with paginate(filtered_collection(Location.all))
+    respond_with filtered_collection(Location.all)
   end
 
   def show
@@ -14,7 +14,7 @@ class Api::Exposed::V1::LocationsController < Api::BaseController
   end
 
   def location_params
-    params.require(:location).permit(
+    params.permit(
       :latitude,
       :longitude,
       :place_name
