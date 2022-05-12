@@ -2,7 +2,7 @@ class Api::Exposed::V1::PichangasController < Api::BaseController
   acts_as_token_authentication_handler_for User, only: [:create, :update, :destroy]
 
   def index
-    respond_with paginate(filtered_collection(Pichanga.all))
+    respond_with filtered_collection(Pichanga.all)
   end
 
   def show
@@ -10,7 +10,8 @@ class Api::Exposed::V1::PichangasController < Api::BaseController
   end
 
   def create
-    respond_with Pichanga.create!(pichanga_params)
+    new_pichanga = Pichanga.new(pichanga_params)
+    respond_with new_pichanga.save!
   end
 
   def update
@@ -29,7 +30,7 @@ class Api::Exposed::V1::PichangasController < Api::BaseController
   end
 
   def pichanga_params
-    params.require(:pichanga).permit(
+    params.permit(
       :home_team_id,
       :visitor_team_id,
       :location_id,
