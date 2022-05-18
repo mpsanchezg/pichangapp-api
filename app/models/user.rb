@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  has_many :my_pichangas, dependent: :destroy, foreign_key: :home_team
+  has_many :my_pichangas, foreign_key: :home_team, class_name: 'Pichanga'
   has_many :pichangas, foreign_key: :visitor_team
 
   devise :database_authenticatable, :registerable,
