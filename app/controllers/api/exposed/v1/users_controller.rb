@@ -8,7 +8,12 @@ class Api::Exposed::V1::UsersController < Api::BaseController
   end
 
   def create
-    _user = User.create!(user_params)
+    _user = User.create!(
+      email: params[:email],
+      password: params[:password],
+      name: params[:name],
+      category: params[:category]
+    )
     respond_with 201
   end
 
