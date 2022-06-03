@@ -20,7 +20,8 @@ class Api::Exposed::V1::UsersController < Api::BaseController
   def login
     _user = User.find_by_email!(params[:email])
     if _user.valid_password? params[:password]
-      respond_with token: _user.authentication_token, user_id: _user.id
+      respond_with token: _user.authentication_token, user_id: _user.id,
+        name: _user.name, category: _user.category
     else
       raise ActiveRecord::RecordNotFound
     end
