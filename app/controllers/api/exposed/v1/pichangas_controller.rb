@@ -23,10 +23,32 @@ class Api::Exposed::V1::PichangasController < Api::BaseController
     respond_with pichanga.destroy!
   end
 
+  def join
+    if request.headers['x-user-token'].nil?
+      respond_with 404
+      return
+    end
+    if visitor_team != pichanga_to_join.home_team
+      pichanga_to_join.visitor_team = visitor_team
+      pichanga_to_join.save!
+      respond_with pichanga_to_join
+    else
+      respond_with 404
+    end
+  end
+
   private
+
+  def pichanga_to_join
+    @pichanga_to_join ||= Pichanga.find_by!(id: params[:pichanga_id])
+  end
 
   def pichanga
     @pichanga ||= Pichanga.find_by!(id: params[:id])
+  end
+
+  def visitor_team
+    @visitor_team ||= User.find_by!(authentication_token: request.headers['x-user-token'])
   end
 
   def pichanga_params
