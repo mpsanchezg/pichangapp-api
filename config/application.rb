@@ -11,7 +11,7 @@ module PichangappApi
         resource '/public/*', headers: :any, methods: :get
         resource '/api/*',
                  headers: :any,
-                 expose: ['X-Page', 'X-PageTotal'],
+                 expose: ['X-Page', 'X-PageTotal','Authorization'],
                  methods: [:get, :post, :patch, :put, :delete, :options]
       end
     end

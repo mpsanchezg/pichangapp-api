@@ -32,6 +32,18 @@ class Api::Exposed::V1::UsersController < Api::BaseController
     respond_with user
   end
 
+  def google
+    begin
+      data = Google::Auth::IDTokens.verify_oidc access_token, aud: "916686299964-cn6o1hoppulj6jinlt8jqv5nllgfi6cm.apps.googleusercontent.com"
+      puts "userNameData"
+      puts data
+      # find the user in the data
+      # if the user does not exist, create a user using data
+      # sign the user (based on your authentication method)
+    rescue StandardError => e
+    end
+  end
+
   private
 
   def user

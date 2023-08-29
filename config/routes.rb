@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :locations, only: [:index, :show]
       post '/login', to: "users#login"
       post '/signup', to: "users#create"
+      post '/google' => 'users#google'
     end
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
