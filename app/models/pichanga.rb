@@ -2,6 +2,7 @@ class Pichanga < ApplicationRecord
   belongs_to :home_team, class_name: 'User'
   belongs_to :visitor_team, class_name: 'User', optional: true
   belongs_to :location
+
 end
 
 # == Schema Information

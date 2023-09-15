@@ -20,6 +20,10 @@ gem 'scout_apm'
 gem 'strong_migrations'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
+gem 'googleauth', '~> 0.4.1'
+gem "jwt"
+gem "bcrypt"
+gem 'psych', '< 4'
 
 group :development do
   gem 'annotate', '~> 3.0'

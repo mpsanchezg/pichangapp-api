@@ -1,5 +1,5 @@
 class Api::Exposed::V1::PichangasController < Api::BaseController
-  acts_as_token_authentication_handler_for User, only: [:create, :update, :destroy]
+  #acts_as_token_authentication_handler_for User, only: [:create, :update, :destroy]
 
   def index
     respond_with filtered_collection(Pichanga.all)
@@ -9,7 +9,14 @@ class Api::Exposed::V1::PichangasController < Api::BaseController
     respond_with pichanga
   end
 
+  def latest
+    @pichanga = Post.last
+    render json: @pichanga
+  end
+
+
   def create
+    puts "CREATE"
     new_pichanga = Pichanga.new(pichanga_params)
     respond_with new_pichanga.save!
   end
@@ -18,12 +25,14 @@ class Api::Exposed::V1::PichangasController < Api::BaseController
     pichanga.update!(pichanga_params)
     respond_with pichanga
   end
+  
 
   def destroy
     respond_with pichanga.destroy!
   end
 
   def join
+    puts "JOIN"
     if request.headers['x-user-token'].nil?
       respond_with 404
       return

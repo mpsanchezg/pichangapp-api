@@ -1,6 +1,11 @@
 require "active_support/core_ext/integer/time"
 
+Rails.application.default_url_options = {
+  host: "http://localhost:3000/"
+}
+
 Rails.application.configure do
+  config.hosts << "665a-2800-150-11c-1cbb-1920-8214-2176-6092.ngrok-free.app"
   config.cache_classes = false
   config.eager_load = false
   config.consider_all_requests_local = true
