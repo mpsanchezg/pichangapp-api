@@ -32,12 +32,7 @@ class Api::Exposed::V1::PichangasController < Api::BaseController
   end
 
   def join
-    puts "JOIN"
-    if request.headers['x-user-token'].nil?
-      respond_with 404
-      return
-    end
-    if visitor_team != pichanga_to_join.home_team
+    if visitor_team != pichanga_to_join.home_team && pichanga_to_join == nil
       pichanga_to_join.visitor_team = visitor_team
       pichanga_to_join.save!
       respond_with pichanga_to_join
@@ -57,7 +52,7 @@ class Api::Exposed::V1::PichangasController < Api::BaseController
   end
 
   def visitor_team
-    @visitor_team ||= User.find_by!(authentication_token: request.headers['x-user-token'])
+    @visitor_team ||= User.find_by!(id: params[:visitor_team_id])
   end
 
   def pichanga_params

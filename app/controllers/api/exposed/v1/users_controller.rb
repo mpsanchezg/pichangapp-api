@@ -10,6 +10,8 @@ class Api::Exposed::V1::UsersController < Api::BaseController
     respond_with user
   end
 
+  
+
   def create
     _user = User.create!(
       email: params[:email],
