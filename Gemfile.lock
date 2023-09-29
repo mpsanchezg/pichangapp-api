@@ -538,7 +538,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jwt
   listen
-  pg
+  pg (~> 1.1)
   power-types
   power_api
   pry-byebug
