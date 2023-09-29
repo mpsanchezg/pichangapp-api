@@ -17,6 +17,11 @@ class Api::Exposed::V1::LocationsController < Api::BaseController
     respond_with location
   end
 
+  def update
+    location.update!(location_params)
+    respond_with pichanga
+  end
+
   private
 
   def location
