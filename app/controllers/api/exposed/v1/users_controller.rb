@@ -11,6 +11,8 @@ class Api::Exposed::V1::UsersController < Api::BaseController
   end
 
   def current
+    header = request.headers['Authorization']
+    header = header.split(' ').last if header
     decoded = jwt_decode(header)
     respond_with User.find(decoded[:user_id])
   end
