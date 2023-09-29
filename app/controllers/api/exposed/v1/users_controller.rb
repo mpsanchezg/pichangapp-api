@@ -1,11 +1,9 @@
 class Api::Exposed::V1::UsersController < Api::BaseController
 
   skip_before_action :authenticate_request, only: [:login, :create]
-  include JsonWebToken
 
   def index
-    decoded = jwt_decode(header)
-    respond_with User.find(decoded[:user_id])
+    respond_with filtered_collection(User.all)
   end
 
   def show
@@ -16,7 +14,6 @@ class Api::Exposed::V1::UsersController < Api::BaseController
     decoded = jwt_decode(header)
     respond_with User.find(decoded[:user_id])
   end
-  
 
   def create
     _user = User.create!(

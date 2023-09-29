@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :pichangas, only: [:index, :create, :update, :destroy]
       #resources :users, only: [:index, :create, :update]
       resources :users do
-        post '/current', to: "users#current"
+        get '/current', to: "users#current"
       end
       resources :locations, only: [:create,:index, :show]
       post '/login', to: "users#login"
