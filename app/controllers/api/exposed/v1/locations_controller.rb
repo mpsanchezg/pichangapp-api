@@ -21,6 +21,7 @@ class Api::Exposed::V1::LocationsController < Api::BaseController
     @location = Location.find(params[:id])
     if @location.update(location_params)
       if params[:image].present?
+        @location.image.purge
         @location.image.attach(params[:image])
       end
       render json: { id: @location.id, place_name: @location.place_name }
