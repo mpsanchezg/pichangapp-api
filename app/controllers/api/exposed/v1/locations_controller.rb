@@ -18,8 +18,15 @@ class Api::Exposed::V1::LocationsController < Api::BaseController
   end
 
   def update
-    location.update!(location_params)
-    respond_with location
+    @location = Location.find(params[:id])
+    if @location.update(location_params)
+      if params[:image].present?
+        @location.image.attach(params[:image])
+      end
+      render json: { id: @location.id, place_name: @location.place_name }
+    else
+      render json: @location.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
