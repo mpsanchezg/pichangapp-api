@@ -5,9 +5,9 @@ Rails.application.routes.draw do
         post '/join', to: "pichangas#join"
       end
       resources :pichangas, only: [:index, :create, :update, :destroy]
-      #resources :users, only: [:index, :create, :update]
+      resources :users, only: [:index]
       get '/current', to: "users#current"
-      resources :locations, only: [:create,:index, :update, :show]
+      resources :locations, only: [:create,:index, :update, :destroy , :show]
       post '/login', to: "users#login"
       post '/signup', to: "users#create"
       post '/google' => 'users#google'

@@ -22,6 +22,10 @@ class Api::Exposed::V1::LocationsController < Api::BaseController
     respond_with pichanga
   end
 
+  def destroy
+    respond_with location.destroy!
+  end
+
   private
 
   def location
