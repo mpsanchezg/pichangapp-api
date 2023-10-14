@@ -19,7 +19,7 @@ class Api::Exposed::V1::LocationsController < Api::BaseController
 
   def update
     location.update!(location_params)
-    respond_with pichanga
+    respond_with location
   end
 
   def destroy
