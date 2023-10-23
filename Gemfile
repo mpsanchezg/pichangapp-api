@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'activeadmin', '~> 2.9'
 gem 'activeadmin_addons'
-gem 'aws-sdk-s3', '~> 1.0'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
 gem 'data_migrate'
 gem 'devise'
