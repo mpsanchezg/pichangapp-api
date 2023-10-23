@@ -1,6 +1,6 @@
 class Api::Exposed::V1::UsersController < Api::BaseController
 
-  skip_before_action :authenticate_request, only: [:login, :create]
+  skip_before_action :authenticate_request, only: [:login, :create, :google]
 
   def index
     respond_with filtered_collection(User.all)
