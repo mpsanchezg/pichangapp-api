@@ -520,7 +520,7 @@ DEPENDENCIES
   activeadmin (~> 2.9)
   activeadmin_addons
   annotate (~> 3.0)
-  aws-sdk-s3 (~> 1.0)
+  aws-sdk-s3
   bcrypt
   better_errors
   binding_of_caller
