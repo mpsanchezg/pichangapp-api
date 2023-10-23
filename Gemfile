@@ -24,6 +24,11 @@ gem 'googleauth', '~> 0.4.1'
 gem "jwt"
 gem "bcrypt"
 gem 'psych', '< 4'
+gem 'omniauth'
+gem 'omniauth-oauth2'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
+
 
 group :development do
   gem 'annotate', '~> 3.0'
