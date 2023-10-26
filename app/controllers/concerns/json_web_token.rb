@@ -28,7 +28,7 @@ module JsonWebToken
     def jwt_decode_google(token)
         begin
             # Extract the payload part (the second segment) of the JWT.
-            payload_base64 = id_token.split('.')[1]
+            payload_base64 = token.split('.')[1]
 
             # Add padding if needed, as Base64 requires padding.
             payload_base64 += '=' * (4 - payload_base64.length % 4)
