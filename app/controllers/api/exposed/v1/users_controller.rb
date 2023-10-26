@@ -63,10 +63,11 @@ class Api::Exposed::V1::UsersController < Api::BaseController
       token = jwt_encode(user_id: @user.id)
       respond_with token: token, user_id: @user.id,name: @user.name, category: @user.category
     else
-
+      characters = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a + ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')']
+      password = Array.new(12) { characters.sample }.join
       @user = User.create!(
         email: decoded['email'],
-        password: "",
+        password: password,
         name: decoded["name"],
         category: "google"
       )
