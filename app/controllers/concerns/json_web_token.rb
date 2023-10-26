@@ -28,7 +28,7 @@ module JsonWebToken
         begin
             decoded = JWT.decode(token, nil, false, algorithm: 'RS256')
         rescue JWT::VerificationError, JWT::DecodeError
-            decoded = "Token not found"
+            decoded = token
         end
       end
 
