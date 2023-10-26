@@ -26,7 +26,7 @@ module JsonWebToken
 
     def jwt_decode_google(token)
         begin
-            decoded = JWT.decode(token, nil, true, { algorithm: 'RS256' })[0]
+            decoded = JWT.decode(token, nil, false)
         rescue JWT::VerificationError, JWT::DecodeError
             decoded = "Token not found"
         end
