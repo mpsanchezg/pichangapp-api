@@ -52,8 +52,10 @@ class Api::Exposed::V1::UsersController < Api::BaseController
     respond_with user
   end
 
+
+  
   def google
-    decoded_token = jwt_decode(params[:google_token])
+    decoded_token = jwt_decode_google(params[:google_token])
     respond_with token: decoded_token
   end
 
