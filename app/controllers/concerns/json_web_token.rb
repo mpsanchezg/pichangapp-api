@@ -26,10 +26,9 @@ module JsonWebToken
 
     def jwt_decode_google(token)
         begin
-          decoded_token = JWT.decode(token, SECRET_KEY, true, algorithm: 'HS256')
-          return decoded_token
+            decoded = JWT.decode(token, SECRET_KEY, true, algorithm: 'HS256')
         rescue JWT::DecodeError => e
-          render json: { error: 'Invalid token' }, status: :unauthorized
+            decoded = "Token not found"
         end
       end
 
