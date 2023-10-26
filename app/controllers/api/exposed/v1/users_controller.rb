@@ -57,7 +57,7 @@ class Api::Exposed::V1::UsersController < Api::BaseController
   def google
     decoded = jwt_decode_google(params[:google_token])
 
-    @user = User.find_by_email(payload_data['email'])
+    @user = User.find_by_email(decoded['email'])
 
     if @user
       token = jwt_encode(user_id: @user.id)
@@ -65,9 +65,9 @@ class Api::Exposed::V1::UsersController < Api::BaseController
     else
 
       @user = User.create!(
-        email: payload_data['email'],
+        email: decoded['email'],
         password: "",
-        name: payload_data["name"],
+        name: decoded["name"],
         category: "google"
       )
       token = jwt_encode(user_id: @user.id)
