@@ -30,6 +30,7 @@ class Api::Exposed::V1::LocationsController < Api::BaseController
     end
   end
 
+  
   def destroy
     respond_with location.destroy!
   end
