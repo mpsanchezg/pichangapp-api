@@ -1,3 +1,2 @@
-web: bundle install
-     rails server
+web: rails server
     
