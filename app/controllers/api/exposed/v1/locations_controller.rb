@@ -29,6 +29,7 @@ class Api::Exposed::V1::LocationsController < Api::BaseController
       render json: @location.errors, status: :unprocessable_entity
     end
   end
+  
 
   def destroy
     respond_with location.destroy!
