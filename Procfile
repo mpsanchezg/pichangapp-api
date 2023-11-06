@@ -1,3 +1,3 @@
-web: ./bin/setup 
+web: bundle install
      rails server
     
