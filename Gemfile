@@ -28,6 +28,7 @@ gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
+gem 'bundler', '~> 1.11', '>= 1.11.2'
 
 
 group :development do
